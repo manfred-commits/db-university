@@ -22,9 +22,16 @@ ORDER BY `degree_id` ASC
 
 3. Selezionare tutti gli studenti che hanno più di 30 anni
 
-SOLUTION
+SOLUTION (3163)
 
+WITHOUT PC DATE
 SELECT TIMESTAMPDIFF(YEAR,`date_of_birth`,'2021-10-27') AS age,`name`,`surname`,`date_of_birth`,`registration_number`
+FROM `students`
+WHERE TIMESTAMPDIFF(YEAR,`date_of_birth`,'2021-10-27') > 30
+ORDER BY date_of_birth DESC
+
+WITH DATE TAKEN FROM PC
+SELECT TIMESTAMPDIFF(YEAR,`date_of_birth`,CURDATE()) AS age,`name`,`surname`,`date_of_birth`,`registration_number`
 FROM `students`
 WHERE TIMESTAMPDIFF(YEAR,`date_of_birth`,'2021-10-27') > 30
 ORDER BY date_of_birth DESC
