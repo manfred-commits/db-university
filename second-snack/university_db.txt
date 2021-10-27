@@ -87,4 +87,3 @@ SOLUTION
 SELECT COUNT(`id`) AS 'totale_insegnanti_senza_numero'
 FROM `teachers`
 WHERE `phone` IS NULL
-ORDER BY `name` ASC
