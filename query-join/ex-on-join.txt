@@ -50,7 +50,15 @@ ORDER BY studente ASC
 5. Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti
 
 SOLUZIONE
-
+SELECT DISTINCT degrees.name AS 'corsi_di_laurea', courses.name AS 'corsi_singoli_per_corso_di_laurea',CONCAT(teachers.name,' ',teachers.surname) AS 'insegnante_del_corso'
+FROM `degrees`
+JOIN courses
+ON courses.degree_id=degrees.id
+JOIN course_teacher
+ON courses.id=course_teacher.course_id
+JOIN teachers
+ON course_teacher.teacher_id=teachers.id
+ORDER BY corsi_di_laurea ASC
 
 
 6. Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica (54)
