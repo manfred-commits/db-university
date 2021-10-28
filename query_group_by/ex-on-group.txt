@@ -11,12 +11,26 @@ ORDER BY `year`  ASC
 
 SOLUZIONE
 
+SELECT COUNT(`id`) AS 'number_of_teachers',`office_address`
+FROM `teachers`
+GROUP BY `office_address`
+
 
 3. Calcolare la media dei voti di ogni appello d'esame
 
 SOLUZIONE
+SELECT CAST(AVG(`vote`) AS DECIMAL(2,0)) AS 'vote_average_for_exam',`exam_id`
+FROM `exam_student`
+GROUP BY `exam_id`  
+ORDER BY `exam_student`.`exam_id` ASC
 
 
 4. Contare quanti corsi di laurea ci sono per ogni dipartimento
 
 SOLUZIONE
+
+SELECT COUNT(degrees.id) AS 'numero_corsi_di_Laurea_per_dipartimento',departments.name AS 'Dipartimento'
+FROM `degrees`
+JOIN departments
+ON degrees.`department_id`=departments.id
+GROUP BY departments.name
