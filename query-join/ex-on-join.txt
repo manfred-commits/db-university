@@ -82,7 +82,7 @@ superare ciascuno dei suoi esami
 
 
 SOLUZIONE
-SELECT DISTINCT students.id, students.name,students.surname, courses.name,COUNT(exam_student.vote) AS 'tentativi'
+SELECT DISTINCT students.id, students.name,students.surname, courses.name,COUNT(exam_student.vote) AS 'tentativi',MAX(exam_student.vote) AS 'voto_massimo'
 FROM `students`
 JOIN exam_student
 ON students.id=exam_student.student_id
