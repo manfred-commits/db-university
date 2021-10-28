@@ -82,7 +82,7 @@ superare ciascuno dei suoi esami
 
 
 SOLUZIONE
-SELECT DISTINCT students.id, CONCAT(students.name,' ',students.surname) AS 'studente', courses.name,exam_student.exam_id,exam_student.vote
+SELECT DISTINCT students.id, students.name,students.surname, courses.name,COUNT(exam_student.vote) AS 'tentativi'
 FROM `students`
 JOIN exam_student
 ON students.id=exam_student.student_id
@@ -90,3 +90,4 @@ JOIN exams
 ON exam_student.student_id=exams.id
 JOIN courses
 ON courses.id=exams.course_id
+GROUP BY students.id,courses.id
