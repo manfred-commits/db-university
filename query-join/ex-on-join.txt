@@ -36,7 +36,15 @@ ORDER BY `id_corso` ASC
 relativo dipartimento, in ordine alfabetico per cognome e nome
 
 SOLUZIONE
-
+SELECT DISTINCT students.registration_number,CONCAT(students.name,' ',students.surname) AS 'studente',degrees.name,departments.name
+FROM `students`
+JOIN degrees
+ON students.degree_id=degrees.id
+JOIN courses
+ON courses.degree_id=degrees.id
+JOIN departments
+ON degrees.department_id=departments.id
+ORDER BY studente ASC
 
 
 5. Selezionare tutti i corsi di laurea con i relativi corsi e insegnanti
