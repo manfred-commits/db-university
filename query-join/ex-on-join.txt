@@ -91,3 +91,4 @@ ON exam_student.student_id=exams.id
 JOIN courses
 ON courses.id=exams.course_id
 GROUP BY students.id,courses.id
+HAVING voto_massimo >= 18
