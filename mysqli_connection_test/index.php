@@ -34,7 +34,10 @@ if($conn && $conn->connect_error){
 
 // initialization of the $sql variable, that will hold the string to insert in the query, that will contain the SQL SELECT
 
-$sql="SELECT * FROM `degrees`";
+$id=$_GET['id'];
+
+
+$sql="SELECT * FROM `degrees` WHERE department_id= {$id}";
 
 // initialization of the $result variable, that will add the query to the mysqli initialized in the $conn class
 
@@ -47,6 +50,7 @@ if($result && $result->num_rows>0){
     while($row = $result->fetch_assoc()){
         echo $row['name']." ".$row['level']. "<br>";
     }
+
 }elseif($result){
     echo "nessun risultato trovato";
 }else{
