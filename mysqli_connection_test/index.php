@@ -32,18 +32,31 @@ if($conn && $conn->connect_error){
     die;
 }
 
-// initialization of the $sql variable, that will hold the string to insert in the query, that will contain the SQL SELECT
 
+
+// initialization of the $sql variable, that will hold the string to insert in the query, that will contain the SQL SELECT
+// this specific method is to avoid sql injections
+
+// preparation of the query, with adition of ? to bind a variable declared at line 43
+$sql=$conn->prepare("SELECT * FROM `degrees` WHERE department_id= ?");
+
+// bind of variable $id with specification of type
+$sql->bind_param('s',$id);
+
+// initialization of $id variable
 $id=$_GET['id'];
 
+// execution of the prepared string at line 41
+$sql->execute();
 
-$sql="SELECT * FROM `degrees` WHERE department_id= {$id}";
 
-// initialization of the $result variable, that will add the query to the mysqli initialized in the $conn class
+// initialization of the $result variable,
+// that will get the result from the execute of $sql
+$result= $sql->get_result();
 
-$result= $conn->query($sql);
 
 var_dump($result);
+
 if($result && $result->num_rows>0){
 
 
